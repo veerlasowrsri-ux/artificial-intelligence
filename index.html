@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Agents in Web Design - Complete Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        h1 {
+            color: #667eea;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.2rem;
+        }
+
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        nav a {
+            color: #667eea;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .content-section {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h2 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            color: #764ba2;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .agent-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .agent-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .agent-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .agent-card h4 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        .xml-example, .html-example, .css-example, .js-example {
+            margin: 1rem 0;
+        }
+
+        .tag {
+            color: #66d9ef;
+        }
+
+        .attribute {
+            color: #a6e22e;
+        }
+
+        .value {
+            color: #e6db74;
+        }
+
+        .comment {
+            color: #75715e;
+        }
+
+        .interactive-demo {
+            background: #f5f7fa;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            border: 2px solid #667eea;
+        }
+
+        .demo-button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s ease;
+            margin: 0.5rem;
+        }
+
+        .demo-button:hover {
+            background: #764ba2;
+        }
+
+        #demo-output {
+            background: white;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-top: 1rem;
+            min-height: 100px;
+            border: 2px dashed #667eea;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .feature-list li {
+            padding: 0.5rem 0 0.5rem 2rem;
+            position: relative;
+        }
+
+        .feature-list li:before {
+            content: "✓";
+            color: #667eea;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .workflow-diagram {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            text-align: center;
+        }
+
+        .workflow-step {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 25px;
+            margin: 0.5rem;
+            position: relative;
+        }
+
+        .workflow-step:not(:last-child):after {
+            content: "→";
+            position: absolute;
+            right: -30px;
+            color: #667eea;
+            font-size: 1.5rem;
+        }
+
+        footer {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .agent-grid {
+                grid-template-columns: 1fr;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .workflow-step:not(:last-child):after {
+                content: "↓";
+                position: static;
+                display: block;
+                margin: 0.5rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🤖 AI Agents in Web Design</h1>
+            <p class="subtitle">A Complete Guide to Building Intelligent Web Agents with XML, HTML, CSS & JavaScript</p>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="#introduction">Introduction</a></li>
+                <li><a href="#what-are-agents">What Are Agents?</a></li>
+                <li><a href="#xml-structure">XML Structure</a></li>
+                <li><a href="#html-implementation">HTML Implementation</a></li>
+                <li><a href="#css-styling">CSS Styling</a></li>
+                <li><a href="#javascript-logic">JavaScript Logic</a></li>
+                <li><a href="#examples">Examples</a></li>
+                <li><a href="#demo">Interactive Demo</a></li>
+            </ul>
+        </nav>
+
+        <section id="introduction" class="content-section">
+            <h2>Introduction to Web Design Agents</h2>
+            <p>AI agents are autonomous software entities that can perceive their environment, make decisions, and take actions to achieve specific goals. In web design, agents can automate tasks, personalize user experiences, and create dynamic, intelligent interfaces.</p>
+            
+            <h3>Key Characteristics of Web Agents</h3>
+            <ul class="feature-list">
+                <li><strong>Autonomy:</strong> Operate without constant human intervention</li>
+                <li><strong>Reactivity:</strong> Respond to changes in their environment</li>
+                <li><strong>Proactivity:</strong> Take initiative to achieve goals</li>
+                <li><strong>Social Ability:</strong> Interact with other agents and users</li>
+                <li><strong>Learning:</strong> Improve performance over time</li>
+            </ul>
+        </section>
+
+        <section id="what-are-agents" class="content-section">
+            <h2>Types of Agents in Web Design</h2>
+            
+            <div class="agent-grid">
+                <div class="agent-card">
+                    <h4>🎨 Design Agents</h4>
+                    <p>Automatically generate layouts, color schemes, and visual elements based on content and user preferences.</p>
+                </div>
+                
+                <div class="agent-card">
+                    <h4>💬 Chatbot Agents</h4>
+                    <p>Provide customer support, answer questions, and guide users through websites using natural language processing.</p>
+                </div>
+                
+                <div class="agent-card">
+                    <h4>🔍 Search Agents</h4>
+                    <p>Intelligently index and retrieve information, learning from user behavior to improve results.</p>
+                </div>
+                
+                <div class="agent-card">
+                    <h4>🎯 Personalization Agents</h4>
+                    <p>Customize content, recommendations, and user interface based on individual user behavior and preferences.</p>
+                </div>
+                
+                <div class="agent-card">
+                    <h4>📊 Analytics Agents</h4>
+                    <p>Monitor user behavior, identify patterns, and provide insights for optimization.</p>
+                </div>
+                
+                <div class="agent-card">
+                    <h4>🛡️ Security Agents</h4>
+                    <p>Detect threats, prevent attacks, and ensure safe user interactions.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="xml-structure" class="content-section">
+            <h2>XML Structure for Agent Configuration</h2>
+            <p>XML (eXtensible Markup Language) is ideal for defining agent configurations, rules, and behaviors in a structured, hierarchical format.</p>
+            
+            <h3>Agent Definition XML Example</h3>
+            <div class="code-block">
+<span class="tag">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="tag">&lt;agent</span> <span class="attribute">id</span>=<span class="value">"chatbot-001"</span> <span class="attribute">type</span>=<span class="value">"conversational"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;metadata&gt;</span>
+        <span class="tag">&lt;name&gt;</span>CustomerSupport Bot<span class="tag">&lt;/name&gt;</span>
+        <span class="tag">&lt;version&gt;</span>2.0<span class="tag">&lt;/version&gt;</span>
+        <span class="tag">&lt;created&gt;</span>2025-01-15<span class="tag">&lt;/created&gt;</span>
+    <span class="tag">&lt;/metadata&gt;</span>
+    
+    <span class="tag">&lt;capabilities&gt;</span>
+        <span class="tag">&lt;capability</span> <span class="attribute">name</span>=<span class="value">"natural-language-processing"</span> <span class="attribute">enabled</span>=<span class="value">"true"</span><span class="tag">/&gt;</span>
+        <span class="tag">&lt;capability</span> <span class="attribute">name</span>=<span class="value">"sentiment-analysis"</span> <span class="attribute">enabled</span>=<span class="value">"true"</span><span class="tag">/&gt;</span>
+        <span class="tag">&lt;capability</span> <span class="attribute">name</span>=<span class="value">"context-awareness"</span> <span class="attribute">enabled</span>=<span class="value">"true"</span><span class="tag">/&gt;</span>
+    <span class="tag">&lt;/capabilities&gt;</span>
+    
+    <span class="tag">&lt;behaviors&gt;</span>
+        <span class="tag">&lt;behavior</span> <span class="attribute">trigger</span>=<span class="value">"user-greeting"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;action&gt;</span>respond-friendly<span class="tag">&lt;/action&gt;</span>
+            <span class="tag">&lt;priority&gt;</span>high<span class="tag">&lt;/priority&gt;</span>
+        <span class="tag">&lt;/behavior&gt;</span>
+        <span class="tag">&lt;behavior</span> <span class="attribute">trigger</span>=<span class="value">"user-frustration"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;action&gt;</span>escalate-to-human<span class="tag">&lt;/action&gt;</span>
+            <span class="tag">&lt;priority&gt;</span>urgent<span class="tag">&lt;/priority&gt;</span>
+        <span class="tag">&lt;/behavior&gt;</span>
+    <span class="tag">&lt;/behaviors&gt;</span>
+    
+    <span class="tag">&lt;knowledge-base&gt;</span>
+        <span class="tag">&lt;source</span> <span class="attribute">type</span>=<span class="value">"database"</span><span class="tag">&gt;</span>products.db<span class="tag">&lt;/source&gt;</span>
+        <span class="tag">&lt;source</span> <span class="attribute">type</span>=<span class="value">"api"</span><span class="tag">&gt;</span>https://api.company.com/faq<span class="tag">&lt;/source&gt;</span>
+    <span class="tag">&lt;/knowledge-base&gt;</span>
+<span class="tag">&lt;/agent&gt;</span>
+            </div>
+
+            <h3>Agent Workflow XML</h3>
+            <div class="code-block">
+<span class="tag">&lt;workflow</span> <span class="attribute">name</span>=<span class="value">"user-interaction"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;step</span> <span class="attribute">id</span>=<span class="value">"1"</span><span class="tag">&gt;</span>
+        <span class="tag">&lt;name&gt;</span>Detect User Intent<span class="tag">&lt;/name&gt;</span>
+        <span class="tag">&lt;method&gt;</span>analyzeInput<span class="tag">&lt;/method&gt;</span>
+        <span class="tag">&lt;next&gt;</span>2<span class="tag">&lt;/next&gt;</span>
+    <span class="tag">&lt;/step&gt;</span>
+    <span class="tag">&lt;step</span> <span class="attribute">id</span>=<span class="value">"2"</span><span class="tag">&gt;</span>
+        <span class="tag">&lt;name&gt;</span>Retrieve Information<span class="tag">&lt;/name&gt;</span>
+        <span class="tag">&lt;method&gt;</span>queryKnowledgeBase<span class="tag">&lt;/method&gt;</span>
+        <span class="tag">&lt;next&gt;</span>3<span class="tag">&lt;/next&gt;</span>
+    <span class="tag">&lt;/step&gt;</span>
+    <span class="tag">&lt;step</span> <span class="attribute">id</span>=<span class="value">"3"</span><span class="tag">&gt;</span>
+        <span class="tag">&lt;name&gt;</span>Generate Response<span class="tag">&lt;/name&gt;</span>
+        <span class="tag">&lt;method&gt;</span>createResponse<span class="tag">&lt;/method&gt;</span>
+        <span class="tag">&lt;next&gt;</span>end<span class="tag">&lt;/next&gt;</span>
+    <span class="tag">&lt;/step&gt;</span>
+<span class="tag">&lt;/workflow&gt;</span>
+            </div>
+        </section>
+
+        <section id="html-implementation" class="content-section">
+            <h2>HTML Implementation for Agent Interfaces</h2>
+            <p>HTML provides the structure for agent user interfaces, including chat windows, control panels, and visualization dashboards.</p>
+            
+            <h3>Chatbot Agent HTML Structure</h3>
+            <div class="code-block">
+<span class="tag">&lt;!-- Agent Chat Interface --&gt;</span>
+<span class="tag">&lt;div</span> <span class="attribute">class</span>=<span class="value">"agent-container"</span> <span class="attribute">data-agent-id</span>=<span class="value">"chatbot-001"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attribute">class</span>=<span class="value">"agent-header"</span><span class="tag">&gt;</span>
+        <span class="tag">&lt;h3&gt;</span>AI Assistant<span class="tag">&lt;/h3&gt;</span>
+        <span class="tag">&lt;span</span> <span class="attribute">class</span>=<span class="value">"agent-status online"</span><span class="tag">&gt;</span>Online<span class="tag">&lt;/span&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+    
+    <span class="tag">&lt;div</span> <span class="attribute">class</span>=<span class="value">"agent-chat-window"</span> <span class="attribute">id</span>=<span class="value">"chatWindow"</span><span class="tag">&gt;</span>
+        <span class="comment">&lt;!-- Messages will be dynamically inserted here --&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+    
+    <span class="tag">&lt;div</span> <span class="attribute">class</span>=<span class="value">"agent-input-area"</span><span class="tag">&gt;</span>
+        <span class="tag">&lt;input</span> 
+            <span class="attribute">type</span>=<span class="value">"text"</span> 
+            <span class="attribute">id</span>=<span class="value">"userInput"</span> 
+            <span class="attribute">placeholder</span>=<span class="value">"Type your message..."</span>
+            <span class="attribute">aria-label</span>=<span class="value">"Message input"</span>
+        <span class="tag">/&gt;</span>
+        <span class="tag">&lt;button</span> <span class="attribute">onclick</span>=<span class="value">"sendMessage()"</span> <span class="attribute">aria-label</span>=<span class="value">"Send message"</span><span class="tag">&gt;</span>
+            Send
+        <span class="tag">&lt;/button&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/div&gt;</span>
+            </div>
+
+            <h3>Agent Control Panel HTML</h3>
+            <div class="code-block">
+<span class="tag">&lt;div</span> <span class="attribute">class</span>=<span class="value">"agent-control-panel"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;h4&gt;</span>Agent Configuration<span class="tag">&lt;/h4&gt;</span>
+    
+    <span class="tag">&lt;div</span> <span class="attribute">class</span>=<span class="value">"control-group"</span><span class="tag">&gt;</span>
+        <span class="tag">&lt;label&gt;</span>
+            <span class="tag">&lt;input</span> <span class="attribute">type</span>=<span class="value">"checkbox"</span> <span class="attribute">id</span>=<span class="value">"enableLearning"</span> <span class="attribute">checked</span><span class="tag">/&gt;</span>
+            Enable Machine Learning
+        <span class="tag">&lt;/label&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+    
+    <span class="tag">&lt;div</span> <span class="attribute">class</span>=<span class="value">"control-group"</span><span class="tag">&gt;</span>
+        <span class="tag">&lt;label</span> <span class="attribute">for</span>=<span class="value">"responseSpeed"</span><span class="tag">&gt;</span>Response Speed:<span class="tag">&lt;/label&gt;</span>
+        <span class="tag">&lt;input</span> <span class="attribute">type</span>=<span class="value">"range"</span> <span class="attribute">id</span>=<span class="value">"responseSpeed"</span> <span class="attribute">min</span>=<span class="value">"1"</span> <span class="attribute">max</span>=<span class="value">"10"</span> <span class="attribute">value</span>=<span class="value">"5"</span><span class="tag">/&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/div&gt;</span>
+            </div>
+        </section>
+
+        <section id="css-styling" class="content-section">
+            <h2>CSS Styling for Agent Interfaces</h2>
+            <p>CSS brings agent interfaces to life with animations, transitions, and responsive designs that enhance user experience.</p>
+            
+            <h3>Agent Chat Interface Styles</h3>
+            <div class="code-block">
+<span class="comment">/* Agent Container Styling */</span>
+<span class="tag">.agent-container</span> {
+    <span class="attribute">width:</span> <span class="value">400px</span>;
+    <span class="attribute">height:</span> <span class="value">600px</span>;
+    <span class="attribute">background:</span> <span class="value">linear-gradient(135deg, #667eea 0%, #764ba2 100%)</span>;
+    <span class="attribute">border-radius:</span> <span class="value">15px</span>;
+    <span class="attribute">box-shadow:</span> <span class="value">0 10px 40px rgba(0,0,0,0.3)</span>;
+    <span class="attribute">display:</span> <span class="value">flex</span>;
+    <span class="attribute">flex-direction:</span> <span class="value">column</span>;
+    <span class="attribute">overflow:</span> <span class="value">hidden</span>;
+}
+
+<span class="comment">/* Agent Header */</span>
+<span class="tag">.agent-header</span> {
+    <span class="attribute">background:</span> <span class="value">rgba(255,255,255,0.95)</span>;
+    <span class="attribute">padding:</span> <span class="value">1rem</span>;
+    <span class="attribute">display:</span> <span class="value">flex</span>;
+    <span class="attribute">justify-content:</span> <span class="value">space-between</span>;
+    <span class="attribute">align-items:</span> <span class="value">center</span>;
+}
+
+<span class="comment">/* Status Indicator */</span>
+<span class="tag">.agent-status</span> {
+    <span class="attribute">padding:</span> <span class="value">0.3rem 0.8rem</span>;
+    <span class="attribute">border-radius:</span> <span class="value">20px</span>;
+    <span class="attribute">font-size:</span> <span class="value">0.85rem</span>;
+    <span class="attribute">font-weight:</span> <span class="value">bold</span>;
+}
+
+<span class="tag">.agent-status.online</span> {
+    <span class="attribute">background:</span> <span class="value">#4ade80</span>;
+    <span class="attribute">color:</span> <span class="value">white</span>;
+    <span class="attribute">animation:</span> <span class="value">pulse 2s infinite</span>;
+}
+
+<span class="comment">/* Pulse Animation */</span>
+<span class="tag">@keyframes pulse</span> {
+    <span class="value">0%</span>, <span class="value">100%</span> {
+        <span class="attribute">opacity:</span> <span class="value">1</span>;
+    }
+    <span class="value">50%</span> {
+        <span class="attribute">opacity:</span> <span class="value">0.7</span>;
+    }
+}
+
+<span class="comment">/* Chat Window */</span>
+<span class="tag">.agent-chat-window</span> {
+    <span class="attribute">flex:</span> <span class="value">1</span>;
+    <span class="attribute">padding:</span> <span class="value">1rem</span>;
+    <span class="attribute">overflow-y:</span> <span class="value">auto</span>;
+    <span class="attribute">background:</span> <span class="value">rgba(255,255,255,0.1)</span>;
+}
+
+<span class="comment">/* Message Bubbles */</span>
+<span class="tag">.message</span> {
+    <span class="attribute">margin:</span> <span class="value">0.5rem 0</span>;
+    <span class="attribute">padding:</span> <span class="value">0.8rem 1rem</span>;
+    <span class="attribute">border-radius:</span> <span class="value">15px</span>;
+    <span class="attribute">max-width:</span> <span class="value">80%</span>;
+    <span class="attribute">animation:</span> <span class="value">slideIn 0.3s ease</span>;
+}
+
+<span class="tag">.message.user</span> {
+    <span class="attribute">background:</span> <span class="value">#667eea</span>;
+    <span class="attribute">color:</span> <span class="value">white</span>;
+    <span class="attribute">margin-left:</span> <span class="value">auto</span>;
+}
+
+<span class="tag">.message.agent</span> {
+    <span class="attribute">background:</span> <span class="value">white</span>;
+    <span class="attribute">color:</span> <span class="value">#333</span>;
+}
+
+<span class="tag">@keyframes slideIn</span> {
+    <span class="value">from</span> {
+        <span class="attribute">opacity:</span> <span class="value">0</span>;
+        <span class="attribute">transform:</span> <span class="value">translateY(10px)</span>;
+    }
+    <span class="value">to</span> {
+        <span class="attribute">opacity:</span> <span class="value">1</span>;
+        <span class="attribute">transform:</span> <span class="value">translateY(0)</span>;
+    }
+}
+            </div>
+        </section>
+
+        <section id="javascript-logic" class="content-section">
+            <h2>JavaScript Logic for Agent Behavior</h2>
+            <p>JavaScript powers the intelligence and interactivity of web agents, handling user interactions, decision-making, and API communications.</p>
+            
+            <h3>Basic Agent Class</h3>
+            <div class="code-block">
+<span class="comment">// Base Agent Class</span>
+<span class="tag">class</span> WebAgent {
+    <span class="tag">constructor</span>(config) {
+        <span class="tag">this</span>.id = config.id;
+        <span class="tag">this</span>.name = config.name;
+        <span class="tag">this</span>.capabilities = config.capabilities || [];
+        <span class="tag">this</span>.knowledgeBase = [];
+        <span class="tag">this</span>.learningEnabled = <span class="value">true</span>;
+    }
+    
+    <span class="comment">// Process user input</span>
+    <span class="tag">processInput</span>(input) {
+        <span class="tag">const</span> intent = <span class="tag">this</span>.detectIntent(input);
+        <span class="tag">const</span> response = <span class="tag">this</span>.generateResponse(intent);
+        <span class="tag">this</span>.learn(input, response);
+        <span class="tag">return</span> response;
+    }
+    
+    <span class="comment">// Detect user intent</span>
+    <span class="tag">detectIntent</span>(input) {
+        <span class="tag">const</span> keywords = {
+            <span class="value">greeting</span>: [<span class="value">'hello'</span>, <span class="value">'hi'</span>, <span class="value">'hey'</span>],
+            <span class="value">help</span>: [<span class="value">'help'</span>, <span class="value">'assist'</span>, <span class="value">'support'</span>],
+            <span class="value">question</span>: [<span class="value">'what'</span>, <span class="value">'how'</span>, <span class="value">'why'</span>, <span class="value">'when'</span>]
+        };
+        
+        <span class="tag">const</span> lowerInput = input.toLowerCase();
+        
+        <span class="tag">for</span> (<span class="tag">let</span> intent <span class="tag">in</span> keywords) {
+            <span class="tag">if</span> (keywords[intent].some(keyword => lowerInput.includes(keyword))) {
+                <span class="tag">return</span> intent;
+            }
+        }
+        
+        <span class="tag">return</span> <span class="value">'unknown'</span>;
+    }
+    
+    <span class="comment">// Generate response based on intent</span>
+    <span class="tag">generateResponse</span>(intent) {
+        <span class="tag">const</span> responses = {
+            <span class="value">greeting</span>: <span class="value">"Hello! How can I assist you today?"</span>,
+            <span class="value">help</span>: <span class="value">"I'm here to help! What do you need assistance with?"</span>,
+            <span class="value">question</span>: <span class="value">"That's a great question. Let me find the answer for you."</span>,
+            <span class="value">unknown</span>: <span class="value">"I'm not sure I understand. Could you rephrase that?"</span>
+        };
+        
+        <span class="tag">return</span> responses[intent] || responses.unknown;
+    }
+    
+    <span class="comment">// Learning mechanism</span>
+    <span class="tag">learn</span>(input, response) {
+        <span class="tag">if</span> (<span class="tag">this</span>.learningEnabled) {
+            <span class="tag">this</span>.knowledgeBase.push({
+                <span class="value">input</span>: input,
+                <span class="value">response</span>: response,
+                <span class="value">timestamp</span>: <span class="tag">new</span> Date()
+            });
+        }
+    }
+    
+    <span class="comment">// Get agent status</span>
+    <span class="tag">getStatus</span>() {
+        <span class="tag">return</span> {
+            <span class="value">id</span>: <span class="tag">this</span>.id,
+            <span class="value">name</span>: <span class="tag">this</span>.name,
+            <span class="value">interactions</span>: <span class="tag">this</span>.knowledgeBase.length,
+            <span class="value">status</span>: <span class="value">'online'</span>
+        };
+    }
+}
+
+<span class="comment">// Chat Interface Handler</span>
+<span class="tag">function</span> <span class="tag">sendMessage</span>() {
+    <span class="tag">const</span> input = document.getElementById(<span class="value">'userInput'</span>);
+    <span class="tag">const</span> chatWindow = document.getElementById(<span class="value">'chatWindow'</span>);
+    
+    <span class="tag">if</span> (!input.value.trim()) <span class="tag">return</span>;
+    
+    <span class="comment">// Display user message</span>
+    <span class="tag">const</span> userMsg = document.createElement(<span class="value">'div'</span>);
+    userMsg.className = <span class="value">'message user'</span>;
+    userMsg.textContent = input.value;
+    chatWindow.appendChild(userMsg);
+    
+    <span class="comment">// Get agent response</span>
+    <span class="tag">const</span> agent = <span class="tag">new</span> WebAgent({
+        <span class="value">id</span>: <span class="value">'chatbot-001'</span>,
+        <span class="value">name</span>: <span class="value">'AI Assistant'</span>
+    });
+    
+    <span class="tag">const</span> response = agent.processInput(input.value);
+    
+    <span class="comment">// Display agent response with delay</span>
+    setTimeout(() => {
+        <span class="tag">const</span> agentMsg = document.createElement(<span class="value">'div'</span>);
+        agentMsg.className = <span class="value">'message agent'</span>;
+        agentMsg.textContent = response;
+        chatWindow.appendChild(agentMsg);
+        chatWindow.scrollTop = chatWindow.scrollHeight;
+    }, <span class="value">500</span>);
+    
+    input.value = <span class="value">''</span>;
+    chatWindow.scrollTop = chatWindow.scrollHeight;
+}
+            </div>
+
+            <h3>XML Parser for Agent Configuration</h3>
+            <div class="code-block">
+<span class="comment">// Parse XML Agent Configuration</span>
+<span class="tag">function</span> <span class="tag">parseAgentXML</span>(xmlString) {
+    <span class="tag">const</span> parser = <span class="tag">new</span> DOMParser();
+    <span class="tag">const</span> xmlDoc = parser.parseFromString(xmlString, <span class="value">"text/xml"</span>);
+    
+    <span class="tag">const</span> agent = xmlDoc.getElementsByTagName(<span class="value">"agent"</span>)[<span class="value">0</span>];
+    
+    <span class="tag">return</span> {
+        <span class="value">id</span>: agent.getAttribute(<span class="value">"id"</span>),
+        <span class="value">type</span>: agent.getAttribute(<span class="value">"type"</span>),
+        <span class="value">name</span>: xmlDoc.getElementsByTagName(<span class="value">"name"</span>)[<span class="value">0</span>].textContent,
+        <span class="value">version</span>: xmlDoc.getElementsByTagName(<span class="value">"version"</span>)[<span class="value">0</span>].textContent,
+        <span class="value">capabilities</span>: Array.from(xmlDoc.getElementsByTagName(<span class="value">"capability"</span>))
+            .map(cap => ({
+                <span class="value">name</span>: cap.getAttribute(<span class="value">"name"</span>),
+                <span class="value">enabled</span>: cap.getAttribute(<span class="value">"enabled"</span>) === <span class="value">"true"</span>
+            }))
+    };
+}
+            </div>
+        </section>
+
+        <section id="examples" class="content-section">
+            <h2>Complete Agent Examples</h2>
+            
+            <h3>Example 1: Simple Recommendation Agent</h3>
+            <div class="code-block">
+<span class="tag">class</span> RecommendationAgent <span class="tag">extends</span> WebAgent {
+    <span class="tag">constructor</span>(config) {
+        super(config);
+        <span class="tag">this</span>.userPreferences = {};
+        <span class="tag">this</span>.productDatabase = [];
+    }
+    
+    <span class="tag">analyzeUserBehavior</span>(interactions) {
+        <span class="comment">// Analyze user clicks, time spent, purchases</span>
+        <span class="tag">const</span> preferences = {};
+        
+        interactions.forEach(interaction => {
+            <span class="tag">const</span> category = interaction.category;
+            preferences[category] = (preferences[category] || <span class="value">0</span>) + <span class="value">1</span>;
+        });
+        
+        <span class="tag">this</span>.userPreferences = preferences;
+    }
+    
+    <span class="tag">getRecommendations</span>(count = <span class="value">5</span>) {
+        <span class="comment">// Sort categories by preference</span>
+        <span class="tag">const</span> sortedCategories = Object.keys(<span class="tag">this</span>.userPreferences)
+            .sort((a, b) => <span class="tag">this</span>.userPreferences[b] - <span class="tag">this</span>.userPreferences[a]);
+        
+        <span class="comment">// Get products from top categories</span>
+        <span class="tag">const</span> recommendations = [];
+        
+        sortedCategories.forEach(category => {
+            <span class="tag">const</span> products = <span class="tag">this</span>.productDatabase
+                .filter(p => p.category === category)
+                .slice(<span class="value">0</span>, count);
+            recommendations.push(...products);
+        });
+        
+        <span class="tag">return</span> recommendations.slice(<span class="value">0</span>, count);
+    }
+}
+            </div>
+
+            <h3>Example 2: Workflow Automation Agent</h3>
+            <div class="code-block">
+<span class="tag">class</span> WorkflowAgent <span class="tag">extends</span> WebAgent {
+    <span class="tag">constructor</span>(config) {
+        super(config);
+        <span class="tag">this</span>.workflows = [];
+        <span class="tag">this</span>.currentStep = <span class="value">0</span>;
+    }
+    
+    <span class="tag">loadWorkflowFromXML</span>(xmlString) {
+        <span class="tag">const</span> parser = <span class="tag">new</span> DOMParser();
+        <span class="tag">const</span> xmlDoc = parser.parseFromString(xmlString, <span class="value">"text/xml"</span>);
+        <span class="tag">const</span> steps = xmlDoc.getElementsByTagName(<span class="value">"step"</span>);
+        
+        <span class="tag">this</span>.workflows = Array.from(steps).map(step => ({
+            <span class="value">id</span>: step.getAttribute(<span class="value">"id"</span>),
+            <span class="value">name</span>: step.getElementsByTagName(<span class="value">"name"</span>)[<span class="value">0</span>].textContent,
+            <span class="value">method</span>: step.getElementsByTagName(<span class="value">"method"</span>)[<span class="value">0</span>].textContent,
+            <span class="value">next</span>: step.getElementsByTagName(<span class="value">"next"</span>)[<span class="value">0</span>].textContent
+        }));
+    }
+    
+    <span class="tag">executeWorkflow</span>() {
+        <span class="tag">const</span> currentWorkflow = <span class="tag">this</span>.workflows[<span class="tag">this</span>.currentStep];
+        
+        <span class="tag">if</span> (!currentWorkflow) {
+            console.log(<span class="value">"Workflow complete"</span>);
+            <span class="tag">return</span>;
+        }
+        
+        console.log(<span class="value">`Executing: ${currentWorkflow.name}`</span>);
+        
+        <span class="comment">// Execute the method</span>
+        <span class="tag">if</span> (<span class="tag">typeof</span> <span class="tag">this</span>[currentWorkflow.method] === <span class="value">'function'</span>) {
+            <span class="tag">this</span>[currentWorkflow.method]();
+        }
+        
+        <span class="comment">// Move to next step</span>
+        <span class="tag">if</span> (currentWorkflow.next !== <span class="value">'end'</span>) {
+            <span class="tag">this</span>.currentStep++;
+            setTimeout(() => <span class="tag">this</span>.executeWorkflow(), <span class="value">1000</span>);
+        }
+    }
+}
+            </div>
+        </section>
+
+        <section id="demo" class="content-section">
+            <h2>Interactive Agent Demo</h2>
+            
+            <div class="interactive-demo">
+                <h3>Try the AI Agent</h3>
+                <p>Click the buttons below to interact with a simple AI agent:</p>
+                
+                <button class="demo-button" onclick="demoGreeting()">Say Hello</button>
+                <button class="demo-button" onclick="demoHelp()">Ask for Help</button>
+                <button class="demo-button" onclick="demoQuestion()">Ask a Question</button>
+                <button class="demo-button" onclick="demoStatus()">Check Status</button>
+                
+                <div id="demo-output"></div>
+            </div>
+
+            <div class="workflow-diagram">
+                <h3>Agent Workflow</h3>
+                <div>
+                    <span class="workflow-step">Receive Input</span>
+                    <span class="workflow-step">Analyze Intent</span>
+                    <span class="workflow-step">Process Request</span>
+                    <span class="workflow-step">Generate Response</span>
+                    <span class="workflow-step">Learn & Adapt</span>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <h3>📚 Additional Resources</h3>
+            <p>For more information about building intelligent web agents, explore:</p>
+            <ul class="feature-list">
+                <li>Machine Learning Libraries (TensorFlow.js, Brain.js)</li>
+                <li>Natural Language Processing APIs</li>
+                <li>Web Components for Agent Interfaces</li>
+                <li>RESTful APIs for Agent Communication</li>
+                <li>WebSocket for Real-time Agent Interactions</li>
+            </ul>
+            <p style="margin-top: 1rem; color: #666;">
+                Created with HTML, CSS, JavaScript & XML • 2025
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // Demo Agent Instance
+        const demoAgent = new WebAgent({
+            id: 'demo-001',
+            name: 'Demo Assistant'
+        });
+
+        function displayOutput(message) {
+            const output = document.getElementById('demo-output');
+            output.innerHTML = `
+                <div style="padding: 1rem; background: #667eea; color: white; border-radius: 8px; margin-top: 1rem;">
+                    <strong>Agent Response:</strong><br>
+                    ${message}
+                </div>
+            `;
+        }
+
+        function demoGreeting() {
+            const response = demoAgent.processInput("Hello");
+            displayOutput(response);
+        }
+
+        function demoHelp() {
+            const response = demoAgent.processInput("I need help");
+            displayOutput(response);
+        }
+
+        function demoQuestion() {
+            const response = demoAgent.processInput("What can you do?");
+            displayOutput(response);
+        }
+
+        function demoStatus() {
+            const status = demoAgent.getStatus();
+            displayOutput(`
+                <strong>Agent ID:</strong> ${status.id}<br>
+                <strong>Name:</strong> ${status.name}<br>
+                <strong>Total Interactions:</strong> ${status.interactions}<br>
+                <strong>Status:</strong> ${status.status}
+            `);
+        }
+
+        // Base Agent Class (same as in code examples)
+        class WebAgent {
+            constructor(config) {
+                this.id = config.id;
+                this.name = config.name;
+                this.capabilities = config.capabilities || [];
+                this.knowledgeBase = [];
+                this.learningEnabled = true;
+            }
+            
+            processInput(input) {
+                const intent = this.detectIntent(input);
+                const response = this.generateResponse(intent);
+                this.learn(input, response);
+                return response;
+            }
+            
+            detectIntent(input) {
+                const keywords = {
+                    greeting: ['hello', 'hi', 'hey'],
+                    help: ['help', 'assist', 'support'],
+                    question: ['what', 'how', 'why', 'when']
+                };
+                
+                const lowerInput = input.toLowerCase();
+                
+                for (let intent in keywords) {
+                    if (keywords[intent].some(keyword => lowerInput.includes(keyword))) {
+                        return intent;
+                    }
+                }
+                
+                return 'unknown';
+            }
+            
+            generateResponse(intent) {
+                const responses = {
+                    greeting: "Hello! How can I assist you today?",
+                    help: "I'm here to help! What do you need assistance with?",
+                    question: "That's a great question. Let me find the answer for you.",
+                    unknown: "I'm not sure I understand. Could you rephrase that?"
+                };
+                
+                return responses[intent] || responses.unknown;
+            }
+            
+            learn(input, response) {
+                if (this.learningEnabled) {
+                    this.knowledgeBase.push({
+                        input: input,
+                        response: response,
+                        timestamp: new Date()
+                    });
+                }
+            }
+            
+            getStatus() {
+                return {
+                    id: this.id,
+                    name: this.name,
+                    interactions: this.knowledgeBase.length,
+                    status: 'online'
+                };
+            }
+        }
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                targetSection.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
